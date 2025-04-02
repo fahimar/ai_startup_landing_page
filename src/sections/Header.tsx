@@ -9,9 +9,9 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="py-3 md:py-4 border-b bg-black text-white border-white/15 md:border-none relative">
+    <header className="py-3 md:py-4 border-b bg-transparent text-white border-white/15 md:border-none sticky top-0 z-50">
       <div className="container px-4 sm:px-6 md:px-8">
-        <div className="flex justify-between items-center gap-2 border border-white/15 rounded-xl p-2 md:p-2.5 mx-auto">
+        <div className="flex justify-between items-center gap-2 border border-white/15 rounded-xl p-2 md:p-2.5 mx-auto backdrop-blur">
           {/* Logo Section */}
           <div>
             <div className="border h-8 w-8 md:h-10 md:w-10 rounded-lg inline-flex justify-center items-center border-white/15">
