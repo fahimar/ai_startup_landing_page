@@ -3,9 +3,11 @@ import { Hero } from "@/sections/Hero";
 
 export default function Home() {
   return (
-    <div className="bg-black">
+    <main className="bg-black min-h-screen text-white">
+      {/* <div className="bg-black"> */}
       <Header />
       <Hero />
-    </div>
+      {/* </div> */}
+    </main>
   );
 }

@@ -1,19 +1,27 @@
+"use client";
 import LogoIcon from "@/assets/logo.svg";
 import MenuIcon from "@/assets/icon-menu.svg";
+import CloseIcon from "@/assets/close-red-icon.svg";
+import { Button } from "@/components/Button";
+import { useState } from "react";
 
 export const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <header className="py-4 border-b bg-black text-white border-white/15 md:border-none">
-      <div className="container">
-        <div className="flex justify-between items-center gap-2 border border-white/15 rounded-xl p-2.5 max-w-2xl mx-auto">
+    <header className="py-3 md:py-4 border-b bg-black text-white border-white/15 md:border-none relative">
+      <div className="container px-4 sm:px-6 md:px-8">
+        <div className="flex justify-between items-center gap-2 border border-white/15 rounded-xl p-2 md:p-2.5 mx-auto">
           {/* Logo Section */}
           <div>
-            <div className="border h-10 w-10 rounded-lg inline-flex justify-center items-center border-white/15">
-              <LogoIcon className="h-8 w-8" />
+            <div className="border h-8 w-8 md:h-10 md:w-10 rounded-lg inline-flex justify-center items-center border-white/15">
+              <LogoIcon className="h-6 w-6 md:h-8 md:w-8" />
             </div>
           </div>
-          <div>
-            <nav className="flex gap-6">
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <nav className="flex gap-4 lg:gap-6 text-sm">
               <a href="#" className="text-white/70 hover:text-white transition">
                 Features
               </a>
@@ -29,23 +37,64 @@ export const Header = () => {
             </nav>
           </div>
 
-          {/* Menu Section */}
-          <div className="flex items-center gap-4">
-            {/* Join Waitlist Button */}
-            <button className="relative py-2 px-3 rounded-lg font-medium text-sm bg-gradient-to-b from-[#190d2e] to-[#4a208a] shadow-[0px_0px_12px_#8c45ff]">
-              <div className="absolute inset-0">
-                <div className="absolute rounded-lg inset-0 bg-white/20 border [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
-                <div className="absolute rounded-lg inset-0 border border-white/40 [mask-image:linear-gradient(to_top,black,transparent)]"></div>
-                <div className="absolute inset-0 shadow-[0_0_10px_rgb(140,69,255,.7)_inset rounded-lg"></div>
-              </div>
-              <span className="relative z-10">Join waitlist</span>
-            </button>
+          {/* Actions Section */}
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="hidden sm:block">
+              <Button>Join Waitlist</Button>
+            </div>
 
-            {/* Menu Icon */}
-            <MenuIcon className="md:hidden h-6 w-6" />
+            {/* Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-1.5"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <CloseIcon className="h-5 w-5" />
+              ) : (
+                <MenuIcon className="h-5 w-5" />
+              )}
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 border-t border-white/15 z-50 backdrop-blur-sm">
+          <div className="container px-4 py-4">
+            <nav className="flex flex-col space-y-4 mb-6">
+              <a
+                href="#"
+                className="text-white/70 hover:text-white transition py-1"
+              >
+                Features
+              </a>
+              <a
+                href="#"
+                className="text-white/70 hover:text-white transition py-1"
+              >
+                Developers
+              </a>
+              <a
+                href="#"
+                className="text-white/70 hover:text-white transition py-1"
+              >
+                Pricing
+              </a>
+              <a
+                href="#"
+                className="text-white/70 hover:text-white transition py-1"
+              >
+                Changelog
+              </a>
+            </nav>
+            <div className="sm:hidden">
+              <Button className="w-full">Join Waitlist</Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

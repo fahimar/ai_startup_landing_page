@@ -16,13 +16,13 @@ const config: Config = {
       screens: {
         sm: "375px",
         md: "768px",
-        lg: "1200px",
+        lg: "1908px",
       },
     },
     screens: {
       sm: "375px",
       md: "768px",
-      lg: "1200px",
+      lg: "1908px",
     },
     extend: {
       colors: {
@@ -30,6 +30,9 @@ const config: Config = {
       },
       backgroundColor: {
         black: "#000000",
+      },
+      zIndex: {
+        "-10": "-10",
       },
     },
   },
